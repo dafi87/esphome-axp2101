@@ -333,6 +333,14 @@ void AXP2101Component::update() {
     UpdateBrightness();
 }
 
+void AXP2101Component::set_screen_backlight(bool on) {
+    if(on) {
+        PMU.enableBLDO1();
+    } else {
+        PMU.disableBLDO1();
+    }
+}
+
 void AXP2101Component::Write1Byte( uint8_t Addr ,  uint8_t Data )
 {
     this->write_byte(Addr, Data);
