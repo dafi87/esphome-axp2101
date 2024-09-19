@@ -341,6 +341,10 @@ void AXP2101Component::set_screen_backlight(bool on) {
     }
 }
 
+bool AXP2101Component::is_screen_backlight_on() {
+    return PMU.isEnableBLDO1();
+}
+
 void AXP2101Component::Write1Byte( uint8_t Addr ,  uint8_t Data )
 {
     this->write_byte(Addr, Data);
