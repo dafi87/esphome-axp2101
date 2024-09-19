@@ -38,6 +38,7 @@ public:
   void set_brightness(float brightness) { brightness_ = brightness; }
   void set_model(AXP2101Model model) { this->model_ = model; }
   void set_screen_backlight(bool on);
+  bool is_screen_backlight_on();
 
   // ========== INTERNAL METHODS ==========
   // (In most use cases you won't need these)
