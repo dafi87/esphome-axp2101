@@ -35,7 +35,7 @@ CONFIG_SCHEMA = (
         {
             cv.GenerateID(): cv.declare_id(AXP2101Component),
             cv.Required(CONF_MODEL): AXP2101_MODEL,
-            cv.Optional(CONF_BATTERY_VOLTAGE): sensor.sensor_schema(
+            cv.Required(CONF_BATTERY_VOLTAGE): sensor.sensor_schema(
                 device_class=DEVICE_CLASS_VOLTAGE,
                 accuracy_decimals=3,
                 entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
@@ -65,10 +65,9 @@ def to_code(config):
 
     cg.add(var.set_model(config[CONF_MODEL]))
 
-    if CONF_BATTERY_VOLTAGE in config:
-        conf = config[CONF_BATTERY_VOLTAGE]
-        sens = yield sensor.new_sensor(conf)
-        cg.add(var.set_batteryvoltage_sensor(sens))
+    conf = config[CONF_BATTERY_VOLTAGE]
+    sens = yield sensor.new_sensor(conf)
+    cg.add(var.set_batteryvoltage_sensor(sens))
 
     if CONF_BATTERY_LEVEL in config:
         conf = config[CONF_BATTERY_LEVEL]
