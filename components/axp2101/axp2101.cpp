@@ -59,32 +59,32 @@ void AXP2101Component::setup()
     // DC1 IMAX=2A
     // 1500~3400mV,100mV/step,20steps
     PMU.setDC1Voltage(3300);
-    ESP_LOGCONFIG(TAG, "DC1  : %s   Voltage:%u mV",  PMU.isEnableDC1()  ? "+" : "-", PMU.getDC1Voltage());
+    
 
     // DC2 IMAX=2A
     // 500~1200mV  10mV/step,71steps
     // 1220~1540mV 20mV/step,17steps
     PMU.setDC2Voltage(1000);
-    ESP_LOGCONFIG(TAG, "DC2  : %s   Voltage:%u mV",  PMU.isEnableDC2()  ? "+" : "-", PMU.getDC2Voltage());
+    
 
     // DC3 IMAX = 2A
     // 500~1200mV,10mV/step,71steps
     // 1220~1540mV,20mV/step,17steps
     // 1600~3400mV,100mV/step,19steps
     PMU.setDC3Voltage(3300);
-    ESP_LOGCONFIG(TAG, "DC3  : %s   Voltage:%u mV",  PMU.isEnableDC3()  ? "+" : "-", PMU.getDC3Voltage());
+    
 
     // DCDC4 IMAX=1.5A
     // 500~1200mV,10mV/step,71steps
     // 1220~1840mV,20mV/step,32steps
     PMU.setDC4Voltage(1000);
-    ESP_LOGCONFIG(TAG, "DC4  : %s   Voltage:%u mV",  PMU.isEnableDC4()  ? "+" : "-", PMU.getDC4Voltage());
+    
 
     // DC5 IMAX=2A
     // 1200mV
     // 1400~3700mV,100mV/step,24steps
     PMU.setDC5Voltage(3300);
-    ESP_LOGCONFIG(TAG, "DC5  : %s   Voltage:%u mV",  PMU.isEnableDC5()  ? "+" : "-", PMU.getDC5Voltage());
+    
 
     //ALDO1 IMAX=300mA
     //500~3500mV, 100mV/step,31steps
@@ -130,7 +130,7 @@ void AXP2101Component::setup()
     PMU.enableDC5();
     PMU.enableALDO1();
     PMU.enableALDO2();
-    PMU.enableALDO3(); // This is the speaker
+    //PMU.enableALDO3(); // This is the speaker
     PMU.enableALDO4();
     PMU.enableBLDO1();
     PMU.enableBLDO2();
@@ -146,12 +146,12 @@ void AXP2101Component::setup()
     ESP_LOGCONFIG(TAG, "DC5  : %s   Voltage:%u mV",  PMU.isEnableDC5()  ? "+" : "-", PMU.getDC5Voltage());
     ESP_LOGCONFIG(TAG, "ALDO1: %s   Voltage:%u mV",  PMU.isEnableALDO1()  ? "+" : "-", PMU.getALDO1Voltage());
     ESP_LOGCONFIG(TAG, "ALDO2: %s   Voltage:%u mV",  PMU.isEnableALDO2()  ? "+" : "-", PMU.getALDO2Voltage());
-    ESP_LOGCONFIG(TAG, "ALDO3: %s   Voltage:%u mV",  PMU.isEnableALDO3()  ? "+" : "-", PMU.getALDO3Voltage());
+    ESP_LOGCONFIG(TAG, "ALDO3: %s   Voltage:%u mV -- Speaker",  PMU.isEnableALDO3()  ? "+" : "-", PMU.getALDO3Voltage());
     ESP_LOGCONFIG(TAG, "ALDO4: %s   Voltage:%u mV",  PMU.isEnableALDO4()  ? "+" : "-", PMU.getALDO4Voltage());
-    ESP_LOGCONFIG(TAG, "BLDO1: %s   Voltage:%u mV",  PMU.isEnableBLDO1()  ? "+" : "-", PMU.getBLDO1Voltage());
+    ESP_LOGCONFIG(TAG, "BLDO1: %s   Voltage:%u mV -- Backlight",  PMU.isEnableBLDO1()  ? "+" : "-", PMU.getBLDO1Voltage());
     ESP_LOGCONFIG(TAG, "BLDO2: %s   Voltage:%u mV",  PMU.isEnableBLDO2()  ? "+" : "-", PMU.getBLDO2Voltage());
     ESP_LOGCONFIG(TAG, "CPUSLDO: %s Voltage:%u mV",  PMU.isEnableCPUSLDO() ? "+" : "-", PMU.getCPUSLDOVoltage());
-    ESP_LOGCONFIG(TAG, "DLDO1: %s   Voltage:%u mV",  PMU.isEnableDLDO1()  ? "+" : "-", PMU.getDLDO1Voltage());
+    ESP_LOGCONFIG(TAG, "DLDO1: %s   Voltage:%u mV -- Vibr. Motor",  PMU.isEnableDLDO1()  ? "+" : "-", PMU.getDLDO1Voltage());
     ESP_LOGCONFIG(TAG, "DLDO2: %s   Voltage:%u mV",  PMU.isEnableDLDO2()  ? "+" : "-", PMU.getDLDO2Voltage());
 
     // Set the time of pressing the button to turn off
