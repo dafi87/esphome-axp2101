@@ -1,5 +1,6 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
+from esphome import automation
 from esphome.components import binary_sensor, i2c, sensor
 from esphome.const import (
     CONF_BATTERY_LEVEL,
@@ -16,10 +17,15 @@ from esphome.const import (
 
 DEPENDENCIES = ["i2c"]
 
+CONF_AXP2101 = "axp2101"
+
 axp2101_ns = cg.esphome_ns.namespace("axp2101")
 AXP2101Component = axp2101_ns.class_(
     "AXP2101Component", cg.PollingComponent, i2c.I2CDevice
 )
+
+BuzzShortAction = axp2101_ns.class_("BuzzShortAction", automation.Action)
+
 AXP2101Model = axp2101_ns.enum("AXP2101Model")
 
 MODELS = {
@@ -82,3 +88,19 @@ def to_code(config):
     if CONF_BRIGHTNESS in config:
         conf = config[CONF_BRIGHTNESS]
         cg.add(var.set_brightness(conf))
+
+
+
+@automation.register_action(
+    "axp2101.buzz_short",
+    BuzzShortAction,
+    cv.Schema(
+        {
+            cv.GenerateID(): cv.use_id(AXP2101Component),
+        }
+    ),
+)
+async def axp2101_buzz_short_to_code(config, action_id, template_arg, args):
+    var = cg.new_Pvariable(action_id, template_arg)
+    await cg.register_parented(var, config[CONF_ID])
+    return var
